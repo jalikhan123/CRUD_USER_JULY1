@@ -1,0 +1,4 @@
+--Populating few records into user table for testing purpose.
+INSERT INTO `user_enrollment`.`user` (`userName`, `userAddress1`, `userAddress2`, `phoneNumber`, `emailAddress`) VALUES ('bhushanp', 'Dange Chowk', 'Thergaon', '123-234-5656', 'bhushanp@gmail.com');
+INSERT INTO `user_enrollment`.`user` (`userName`, `userAddress1`, `userAddress2`, `phoneNumber`, `emailAddress`) VALUES ('harshalp', 'Kalyan', 'Mumbai', '123-234-5656', 'harsalp@hotmail.com');
+INSERT INTO `user_enrollment`.`user` (`userName`, `userAddress1`, `userAddress2`, `phoneNumber`, `emailAddress`) VALUES ('sandipp', 'Dange Chowk', 'Thergaon', '123-234-5656', 'sandipp@gmail.com');
