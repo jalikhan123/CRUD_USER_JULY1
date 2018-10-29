@@ -35,10 +35,10 @@
 						<div class="col-lg-8">
 						 	<label for="restCall">Rest Call:</label>
 						  	<select class="form-control col-lg-8" id="restCall" name="restCall">
-						    	<option value="getAllUser" select >Get All User</option>
-						    	<option value="addUser" >Add User</option>
-						    	<option value="updateUser" >Update User</option>
-						    	<option value="deleteUser" >Delete User</option>
+						    	<option value="user/getAllUser" select >Get All User</option>
+						    	<option value="user/addUser" >Add User</option>
+						    	<option value="user/updateUser" >Update User</option>
+						    	<option value="user/deleteUser" >Delete User</option>
 						  	</select>
 						</div>
 						<div class="col-lg-2">
@@ -76,14 +76,14 @@
 				
 				$("#restCall").on("change", function(){
 					var selectedVal = $("#restCall option:selected").val();
-					if(selectedVal === 'addUser'){
-						testRestCall('getUserSkeleton', '');
+					if(selectedVal === 'user/addUser'){
+						testRestCall('user/getUserSkeleton', '');
 						$("#restInputField").prop('disabled', true);
 						$('#restInputField').css("border", "2px solid black");
-					} else if(selectedVal === 'updateUser'){
+					} else if(selectedVal === 'user/updateUser'){
 						$("#restInputField").prop('disabled', false);
 						$('#restInputField').css("border", "2px solid red");
-					} else if(selectedVal === 'deleteUser'){
+					} else if(selectedVal === 'user/deleteUser'){
 						$("#restInputField").prop('disabled', false);
 						$('#restInputField').css("border", "2px solid red");
 					} else {
@@ -96,7 +96,7 @@
 					var selectedVal = $("#restCall option:selected").val();
 					var restInputField = $("#restInputField").val();
 					var reqResField = $("#req_res").val();
-					if((selectedVal === 'updateUser' || selectedVal === 'deleteUser') && restInputField == ''){
+					if((selectedVal === 'user/updateUser' || selectedVal === 'user/deleteUser') && restInputField == ''){
 						 alert('Please provide User Id');
 						 $("#restInputField").focus();
 						 return false;
@@ -110,14 +110,14 @@
 				$( "#restInputField" ).blur(function() {
 					var selectedVal = $("#restCall option:selected").val();
 					var restInputField = $("#restInputField").val();
-					if((selectedVal === 'updateUser' || selectedVal === 'deleteUser') && restInputField == ''){
+					if((selectedVal === 'user/updateUser' || selectedVal === 'user/deleteUser') && restInputField == ''){
 						 alert('Please provide User Id');
 						 $("#restInputField").focus();
 						 return false;
 					} else {
 						restInputField =  '?userId=' + restInputField;
 					}
-				  	testRestCall('getUser', restInputField);
+				  	testRestCall('user/getUser', restInputField);
 				});
 			});
 		

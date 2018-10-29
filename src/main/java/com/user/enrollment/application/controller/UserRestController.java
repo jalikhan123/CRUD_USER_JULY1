@@ -25,6 +25,7 @@ import com.user.enrollment.application.database.dao.User;
  * @author Lavanya
  */
 @RestController
+@RequestMapping("/user")
 public class UserRestController {
 
 	/**
