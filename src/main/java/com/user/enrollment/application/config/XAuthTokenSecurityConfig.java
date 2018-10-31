@@ -10,15 +10,17 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+/*@EnableWebSecurity(debug = true)
+@Configuration
+@Order*/
+public class XAuthTokenSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.csrf().disable();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-		String[] restEndpointsToSecure = { "user" };
+		String[] restEndpointsToSecure = { "x-auth" };
 		for (String endpoint : restEndpointsToSecure) {
 			http.authorizeRequests().antMatchers("/" + endpoint + "/**").hasRole(CustomUserDetailsService.ROLE_USER);
 		}
@@ -27,12 +29,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				userDetailsServiceBean());
 		http.apply(securityConfigurerAdapter);
 	}
-
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder authManagerBuilder) throws Exception {
 		authManagerBuilder.userDetailsService(new CustomUserDetailsService());
 	}
-
+    
 	@Bean
 	@Override
 	public UserDetailsService userDetailsServiceBean() throws Exception {

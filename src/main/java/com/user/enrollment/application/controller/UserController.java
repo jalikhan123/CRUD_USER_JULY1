@@ -25,22 +25,20 @@ import com.user.enrollment.application.database.dao.User;
  * @author Lavanya
  */
 @RestController
-@RequestMapping("/user")
-public class UserRestController {
+public class UserController {
 
 	/**
 	 * userView - UserView instance.
 	 */
 	@Autowired
-	private UserView userView; 
-	
+	private UserView userView;
+
 	/**
 	 * userPersist - UserPersist instance.
 	 */
 	@Autowired
 	private UserPersist userPersist;
-	
-	
+
 	/**
 	 * getAllUser Method to fetch all User List.
 	 * 
@@ -52,7 +50,7 @@ public class UserRestController {
 		dataResult.put("data", userView.getAllUser());
 		return dataResult;
 	}
-	
+
 	/**
 	 * getAllUser Method to fetch all User List.
 	 * 
@@ -61,15 +59,15 @@ public class UserRestController {
 	@RequestMapping("/getUser")
 	public User getUser(final @RequestParam("userId") Long userId) {
 		User resUser = null;
-		for(User user : userView.getAllUser()) {
-			if(user.getUserId() == userId) {
+		for (User user : userView.getAllUser()) {
+			if (user.getUserId() == userId) {
 				resUser = user;
 				break;
 			}
 		}
 		return resUser;
 	}
-	
+
 	/**
 	 * getAllUser Method to fetch all User List.
 	 * 
@@ -85,7 +83,7 @@ public class UserRestController {
 		user.setEmailAddress("TEST@GMAIL.COM");
 		return user;
 	}
-	
+
 	/**
 	 * addUser Method to add User into database.
 	 * 
@@ -93,12 +91,12 @@ public class UserRestController {
 	 */
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	@RequestMapping(value="/addUser", method=RequestMethod.POST)
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	public User addUser(@RequestBody User userData) {
 		userPersist.addUser(userData);
 		return userData;
 	}
-	
+
 	/**
 	 * addUser Method to add User into database.
 	 * 
@@ -106,7 +104,7 @@ public class UserRestController {
 	 */
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	@RequestMapping(value="/updateUser", method=RequestMethod.POST)
+	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
 	public Map<String, String> updateUser(@RequestParam("userId") Long userId, @RequestBody User userData) {
 		final Map<String, String> resultMap = new ConcurrentHashMap<String, String>();
 		userPersist.updateUser(userData);
@@ -114,13 +112,13 @@ public class UserRestController {
 		resultMap.put("userId", userId.toString());
 		return resultMap;
 	}
-	
+
 	/**
 	 * addUser Method to add User into database.
 	 * 
 	 * @return Map instance.
 	 */
-	@RequestMapping(value="/deleteUser", method=RequestMethod.POST)
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
 	public Map<String, String> deleteUser(@RequestParam("userId") Long userId) {
 		final Map<String, String> resultMap = new ConcurrentHashMap<String, String>();
 		userPersist.deleteUser(userId);
